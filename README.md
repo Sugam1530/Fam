@@ -42,7 +42,7 @@ assets/
 1. **Clone the Repo**
 
 ```bash
-git clone https://github.com/your-username/gradient-card-ui.git
+git clone https://github.com/Sugam1530/Fam.git
 cd gradient-card-ui
 ```
 
