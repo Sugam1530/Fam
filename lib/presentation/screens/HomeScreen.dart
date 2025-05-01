@@ -32,60 +32,66 @@ class HomeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   color: AppColors.secondaryColor,
                 ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 20),
-                      SizedBox(
-                        height: 435,
-                        child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          scrollDirection: viewModel.cardsHC3.length > 1 ? Axis.horizontal : Axis.vertical,
-                          physics: const ClampingScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: viewModel.cardsHC3.length,
-                          itemBuilder: (context, index) => HC3Widget(model: viewModel.cardsHC3[index]),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 65,
-                        child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          scrollDirection: viewModel.cardsHC6.length > 1 ? Axis.horizontal : Axis.vertical,
-                          physics: const ClampingScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: viewModel.cardsHC6.length,
-                          itemBuilder: (context, index) => HC6Widget(model: viewModel.cardsHC6[index]),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 150,
-                        child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          scrollDirection: viewModel.cardsHC5.length > 1 ? Axis.horizontal : Axis.vertical,
-                          physics: const ClampingScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: viewModel.cardsHC5.length,
-                          itemBuilder: (context, index) => HC5Widget(model: viewModel.cardsHC5[index]),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 180,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 15.0),
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    await viewModel.fetchHomeFeed(); // Call your fetch method here
+                  },
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 20),
+                        SizedBox(
+                          height: 435,
                           child: ListView.builder(
                             padding: EdgeInsets.zero,
-                            scrollDirection: viewModel.cardsHC9.length > 1 ? Axis.horizontal : Axis.vertical,
+                            scrollDirection: viewModel.cardsHC3.length > 1 ? Axis.horizontal : Axis.vertical,
                             physics: const ClampingScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: viewModel.cardsHC9.length,
-                            itemBuilder: (context, index) => HC9Widget(model: viewModel.cardsHC9[index]),
+                            itemCount: viewModel.cardsHC3.length,
+                            itemBuilder: (context, index) => HC3Widget(model: viewModel.cardsHC3[index]),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                    ],
+                        SizedBox(
+                          height: 65,
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: viewModel.cardsHC6.length > 1 ? Axis.horizontal : Axis.vertical,
+                            physics: const ClampingScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: viewModel.cardsHC6.length,
+                            itemBuilder: (context, index) => HC6Widget(model: viewModel.cardsHC6[index]),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 150,
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: viewModel.cardsHC5.length > 1 ? Axis.horizontal : Axis.vertical,
+                            physics: const ClampingScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: viewModel.cardsHC5.length,
+                            itemBuilder: (context, index) => HC5Widget(model: viewModel.cardsHC5[index]),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 180,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 15.0),
+                            child: ListView.builder(
+                              padding: EdgeInsets.zero,
+                              scrollDirection: viewModel.cardsHC9.length > 1 ? Axis.horizontal : Axis.vertical,
+                              physics: const ClampingScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: viewModel.cardsHC9.length,
+                              itemBuilder: (context, index) => HC9Widget(model: viewModel.cardsHC9[index]),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                      ],
+                    ),
                   ),
                 ),
               ),
