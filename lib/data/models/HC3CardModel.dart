@@ -11,20 +11,24 @@ class HC3CardModel {
     this.cta,
   });
 
-  factory HC3CardModel.fromJson(List<dynamic> json) {
+  factory HC3CardModel.fromJson(Map<String, dynamic> json) {
     return HC3CardModel(
-      title: json[0]['title'],
-      formattedTitle: json[0]['formatted_title'] != null
-          ? FormattedTitle.fromJson(json[0]['formatted_title'])
+      title: json['title'],
+      formattedTitle: json['formatted_title'] != null
+          ? FormattedTitle.fromJson(json['formatted_title'])
           : null,
-      bgImage: json[0]['bg_image'] != null
-          ? BgImage.fromJson(json[0]['bg_image'])
+      bgImage: json['bg_image'] != null
+          ? BgImage.fromJson(json['bg_image'])
           : null,
-      cta: (json[0]['cta'] as List<dynamic>?)
+      cta: (json['cta'] as List<dynamic>?)
           ?.map((e) => CTA.fromJson(e))
           .toList() ??
           [],
     );
+  }
+
+  static List<HC3CardModel> fromJsonList(List<dynamic> jsonList) {
+    return jsonList.map((json) => HC3CardModel.fromJson(json)).toList();
   }
 }
 

@@ -6,6 +6,7 @@ import '../widgets/card_groups/HC3Widget.dart';
 import '../widgets/card_groups/HC5Widget.dart';
 import '../widgets/card_groups/HC6Widget.dart';
 import '../widgets/card_groups/HC9Widget.dart';
+import '../widgets/card_groups/HC1Widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -89,7 +90,22 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        SizedBox(
+                          height: 180,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 15.0),
+                            child: ListView.builder(
+                              padding: EdgeInsets.zero,
+                              physics: const ClampingScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: viewModel.cardsHC1.length,
+                              itemBuilder: (context, index) => Padding(
+                                padding: const EdgeInsets.only(top: 12.0),
+                                child: HC1Widget(cards: viewModel.cardsHC1[index]),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

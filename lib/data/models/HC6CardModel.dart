@@ -17,17 +17,21 @@ class HC6CardModel {
     this.iconSize,
   });
 
-  factory HC6CardModel.fromJson(List<dynamic> json) {
+  factory HC6CardModel.fromJson(Map<String, dynamic> json) {
     return HC6CardModel(
-      title: json[0]['title'],
-      formattedTitle: json[0]['formatted_title'] != null
-          ? FormattedTitle.fromJson(json[0]['formatted_title'])
+      title: json['title'],
+      formattedTitle: json['formatted_title'] != null
+          ? FormattedTitle.fromJson(json['formatted_title'])
           : null,
-      icon: json[0]['icon'] != null ? IconImage.fromJson(json[0]['icon']) : null,
-      url: json[0]['url'],
-      bgColor: json[0]['bg_color'],
-      iconSize: json[0]['icon_size'],
+      icon: json['icon'] != null ? IconImage.fromJson(json['icon']) : null,
+      url: json['url'],
+      bgColor: json['bg_color'],
+      iconSize: json['icon_size'],
     );
+  }
+
+  static List<HC6CardModel> fromJsonList(List<dynamic> jsonList) {
+    return jsonList.map((json) => HC6CardModel.fromJson(json)).toList();
   }
 }
 

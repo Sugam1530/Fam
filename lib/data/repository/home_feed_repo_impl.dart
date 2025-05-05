@@ -3,6 +3,7 @@ import '../models/HC3CardModel.dart';
 import '../models/HC5CardModel.dart';
 import '../models/HC6CardModel.dart';
 import '../models/HC9CardModel.dart';
+import '../models/HC1CardModel.dart';
 import '../models/home_feed_model.dart';
 import 'home_feed_repository.dart';
 
@@ -24,7 +25,7 @@ class HomeFeedRepositoryImpl implements HomeFeedRepository {
 
     for (var widget in widgets) {
       if (widget.designType == 'HC3') {
-          hc3Cards.add(HC3CardModel.fromJson(widget.widgets));
+          hc3Cards.addAll(HC3CardModel.fromJsonList(widget.widgets));
       }
     }
 
@@ -36,7 +37,7 @@ class HomeFeedRepositoryImpl implements HomeFeedRepository {
 
     for (var widget in widgets) {
       if (widget.designType == 'HC5') {
-        hc5Cards.add(HC5CardModel.fromJson(widget.widgets));
+        hc5Cards.addAll(HC5CardModel.fromJsonList(widget.widgets));
       }
     }
 
@@ -48,7 +49,7 @@ class HomeFeedRepositoryImpl implements HomeFeedRepository {
 
     for (var widget in widgets) {
       if (widget.designType == 'HC6') {
-        hc6Cards.add(HC6CardModel.fromJson(widget.widgets));
+        hc6Cards.addAll(HC6CardModel.fromJsonList(widget.widgets));
       }
     }
 
@@ -65,5 +66,17 @@ class HomeFeedRepositoryImpl implements HomeFeedRepository {
     }
 
     return hc9Cards;
+  }
+
+  List<HC1CardModel> extractHC1Cards(List<dynamic> widgets) {
+    final hc1Cards = <HC1CardModel>[];
+
+    for (var widget in widgets) {
+      if (widget.designType == 'HC1') {
+        hc1Cards.addAll(HC1CardModel.fromJsonList(widget.widgets));
+      }
+    }
+
+    return hc1Cards;
   }
 }

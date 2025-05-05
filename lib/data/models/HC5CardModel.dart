@@ -23,21 +23,25 @@ class HC5CardModel {
     this.isInternal,
   });
 
-  factory HC5CardModel.fromJson(List<dynamic> json) {
+  factory HC5CardModel.fromJson(Map<String, dynamic> json) {
     return HC5CardModel(
-      id: json[0]['id'],
-      name: json[0]['name'],
-      slug: json[0]['slug'],
-      title: json[0]['title'],
-      formattedTitle: json[0]['formatted_title'] != null
-          ? FormattedTitle.fromJson(json[0]['formatted_title'])
+      id: json['id'],
+      name: json['name'],
+      slug: json['slug'],
+      title: json['title'],
+      formattedTitle: json['formatted_title'] != null
+          ? FormattedTitle.fromJson(json['formatted_title'])
           : null,
-      bgImage: json[0]['bg_image'] != null
-          ? BgImage.fromJson(json[0]['bg_image'])
+      bgImage: json['bg_image'] != null
+          ? BgImage.fromJson(json['bg_image'])
           : null,
-      isDisabled: json[0]['is_disabled'],
-      isShareable: json[0]['is_shareable'],
-      isInternal: json[0]['is_internal'],
+      isDisabled: json['is_disabled'],
+      isShareable: json['is_shareable'],
+      isInternal: json['is_internal'],
     );
+  }
+
+  static List<HC5CardModel> fromJsonList(List<dynamic> jsonList) {
+    return jsonList.map((json) => HC5CardModel.fromJson(json)).toList();
   }
 }

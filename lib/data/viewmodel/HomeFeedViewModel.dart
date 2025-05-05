@@ -22,6 +22,9 @@ class HomeFeedViewModel with ChangeNotifier {
   List<dynamic> _cardsHC9 = [];
   List<dynamic> get cardsHC9 => _cardsHC9;
 
+  List<dynamic> _cardsHC1 = [];
+  List<dynamic> get cardsHC1 => _cardsHC1;
+
   HomeFeedViewModel(this.repository) {
     fetchHomeFeed();
   }
@@ -40,6 +43,7 @@ class HomeFeedViewModel with ChangeNotifier {
       _cardsHC5 = repository.extractHC5Cards(allWidgets);
       _cardsHC6 = repository.extractHC6Cards(allWidgets);
       _cardsHC9 = repository.extractHC9Cards(allWidgets);
+      _cardsHC1 = repository.extractHC1Cards(allWidgets);
       _error = null;
     } catch (e) {
       _error = e.toString();
